@@ -142,6 +142,8 @@ print(student1)
 print(student2)
 print(student1 == student2)
 print(lecturer1 == lecturer2)
+print(student2.rate_lecture(lecturer2, 'Java', 5))
+print(reviewer2.rate_hw(student2, 'C++', 9))
 
 
 def average_grades(grades):
@@ -155,12 +157,12 @@ def average_rate_student(student_list, course_name):
 
     for student in student_list:
         if isinstance(student, Student) and course_name in student.courses_in_progress:
-            print(f"""
+            return f"""
             Имя: {student.name}
             Фамилия: {student.surname}
             Средняя оценка за домашние задания: {average_grades(student.grades[course_name])}
             Курс: {course_name}
-            """)
+            """
         else:
             'Ошибка'
 
@@ -169,15 +171,17 @@ def average_rate_lector(lector_list, course_name):
 
     for lector in lector_list:
         if isinstance(lector, Lecturer) and course_name in lector.courses_attached:
-            print(f"""
+            return f"""
             Имя: {lector.name}
             Фамилия: {lector.surname}
             Средняя оценка за лекции: {average_grades(lector.grades[course_name])}
             Курс: {course_name}
-            """)
+            """
         else:
             'Ошибка'
 
 
-average_rate_student([student1, student2], 'Python')
-average_rate_lector([lecturer1, lecturer2], 'Python')
+answer1 = average_rate_student([student1, student2], 'Python')
+answer2 = average_rate_lector([lecturer1, lecturer2], 'Python')
+
+print(answer1, answer2)
